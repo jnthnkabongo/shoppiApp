@@ -1,0 +1,35 @@
+shoppi_flutter/
+ ┣ 📂 lib/
+ ┃ ┣ 📂 core/                  # 🔹 Contient les éléments réutilisables & transversaux
+ ┃ ┃ ┣ 📂 errors/              # → Gestion des erreurs globales
+ ┃ ┃ ┣ 📂 utils/               # → Fonctions utilitaires (formatters, extensions)
+ ┃ ┃ ┣ 📂 network/             # → Gestion des requêtes API (Dio, Retrofit)
+ ┃ ┃ ┣ 📂 storage/             # → Gestion du stockage local (Hive, SharedPreferences)
+ ┃ ┃ ┣ 📂 config/              # → Fichiers de configuration (constantes, env)
+ ┃ ┃ ┣ 📂 theme/               # → Styles globaux, couleurs, typography
+ ┃ ┣ 📂 shared/                # 🔁 Contient les composants réutilisables
+ ┃ ┃ ┣ 📂 widgets/             # → Composants génériques (buttons, loaders)
+ ┃ ┃ ┣ 📂 services/            # → Services partagés (auth, analytics)
+ ┃ ┣ 📂 features/              # 🛍 Chaque module métier a son propre dossier
+ ┃ ┃ ┣ 📂 auth/                # 🔑 Connexion & inscription
+ ┃ ┃ ┃ ┣ 📂 data/              # → Sources de données (API, Local)
+ ┃ ┃ ┃ ┣ 📂 domain/            # → Logique métier (Use Cases, Models)
+ ┃ ┃ ┃ ┣ 📂 presentation/      # → UI & Écrans (LoginPage, RegisterPage)  
+ ┃ ┃ ┃ ┣ 📂 state/             # → Gestion de l'état (Bloc, Riverpod)
+ ┃ ┃ ┣ 📂 home/                # 🏠 Accueil et navigation principale
+ ┃ ┃ ┣ 📂 product/             # 🛒 Gestion des produits
+ ┃ ┃ ┃ ┣ 📂 data/              # → Requêtes API, local DB
+ ┃ ┃ ┃ ┣ 📂 domain/            # → Modèles & Use Cases
+ ┃ ┃ ┃ ┣ 📂 presentation/      # → UI & Écrans (ProductList, ProductDetail)
+ ┃ ┃ ┃ ┣ 📂 state/             # → Gestion de l'état (Bloc, Riverpod)
+ ┃ ┃ ┣ 📂 cart/                # 🛍 Gestion du panier
+ ┃ ┃ ┣ 📂 order/               # 📦 Gestion des commandes
+ ┃ ┃ ┣ 📂 payment/             # 💳 Gestion des paiements
+ ┃ ┃ ┣ 📂 chat/                # 💬 Support client en temps réel
+ ┃ ┃ ┣ 📂 live/                # 🎥 Live shopping et vidéos
+ ┃ ┣ 📂 navigation/            # 🌍 Gestion des routes et navigation
+ ┃ ┣ 📂 injection/             # 🏗 Gestion des dépendances (GetIt, Riverpod)
+ ┣ 📂 assets/                  # 📂 Contient les ressources (images, fonts)
+ ┣ 📂 test/                    # ✅ Tests unitaires et widget tests
+ ┣ 📜 pubspec.yaml             # 📜 Dépendances et configuration du projet
+ ┣ 📜 README.md                # 📖 Documentation du projet
