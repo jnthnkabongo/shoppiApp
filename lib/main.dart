@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shoppi_flutter/core/theme/app_theme.dart';
+import 'package:shoppi_flutter/navigation/app_router.dart';
+import 'package:shoppi_flutter/pages/connexion_page.dart';
 import 'package:shoppi_flutter/pages/loading_page.dart';
 
 void main() {
@@ -13,11 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
-        useMaterial3: true,
-      ),
-      home: const MyLoading(),
+      theme: AppTheme.lightTheme,
+      home: const MyConnexion(),
+      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: '/',
     );
   }
 }
