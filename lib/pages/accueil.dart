@@ -9,6 +9,8 @@ class MyAccueil extends StatefulWidget {
 
 class _MyAccueil extends State<MyAccueil> {
 
+  int pagesIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,7 +156,20 @@ class _MyAccueil extends State<MyAccueil> {
             ),
           ],
         ),
+      
       ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: pagesIndex,
+        onDestinationSelected: (int index){
+          setState(() {
+            pagesIndex = index;
+          });
+        },
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: "Accueil"),
+          NavigationDestination(icon: Icon(Icons.equalizer), label: "Rapport")
+
+      ]),
     );
   }
 }
