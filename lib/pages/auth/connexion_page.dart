@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppi_flutter/pages/accueil.dart';
+import 'package:shoppi_flutter/pages/home/accueil.dart';
 import 'package:shoppi_flutter/shared/widgets/custom_button.dart';
 
 class MyConnexion extends StatelessWidget {
@@ -47,7 +47,7 @@ class MyConnexion extends StatelessWidget {
                 CustomButton(
                   text: "Se connecter / S'inscrire",
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyAccueil()),);
+                    Navigator.pushNamed(context, '/accueil');
                   }, 
                 ),
                 const SizedBox(height: 200),
