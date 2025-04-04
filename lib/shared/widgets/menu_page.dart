@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppi_flutter/pages/accueil.dart';
+import 'package:shoppi_flutter/pages/home/accueil.dart';
 
 class MenuPage extends StatefulWidget {
   final String title;
