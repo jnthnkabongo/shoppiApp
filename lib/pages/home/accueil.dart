@@ -18,7 +18,7 @@ class _MyAccueil extends State<MyAccueil> {
         children: [
           SearchBarWidget(), // 🔎 Barre de recherche
           CategoryList(), // 📂 Liste des catégories
-          ProductList(title: "Meilleures Ventes"), // 🏆 Liste des produits
+          ProductList(title: "Meilleures Ventes"),
         ],
       ),
     ),
