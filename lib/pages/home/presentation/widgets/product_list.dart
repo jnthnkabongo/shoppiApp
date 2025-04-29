@@ -34,10 +34,25 @@ class ProductList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(title, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-              const Text(
-                'Voir',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red),
-              ),
+              TextButton(
+  onPressed: () {
+    // TODO: Naviguer vers la page complète
+  },
+  style: TextButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.red, // bouton rouge avec texte blanc
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20), // 👈 coins arrondis
+    ),
+    textStyle: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  child: const Text("Voir plus"),
+),
+
             ],
           ),
         ),

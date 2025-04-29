@@ -7,7 +7,10 @@ class CategoryCard extends StatelessWidget {
 
   const CategoryCard(
     this.name,
-    this.imageUrl, { required this.placeholder, super.key});
+    this.imageUrl, {
+    required this.placeholder,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,30 +19,37 @@ class CategoryCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         children: [
-          ClipOval(
-            child: Image.asset(
-              imageUrl,
-              fit: BoxFit.cover,
-              height: 80,
-              width: 80,
-              errorBuilder: (context, error, stackTrace) {
-                return ClipOval(
-                  child: Image.asset(
-                    placeholder,
-                    fit: BoxFit.cover,
-                    height: 80,
-                    width: 80,
-                  ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 5),
+          Material(
+  elevation: 2,
+  shape: const CircleBorder(),
+  clipBehavior: Clip.antiAlias,
+  child: InkWell(
+    onTap: () {
+      // TODO: Gérer le clic sur une catégorie
+    },
+    child: SizedBox(
+      height: 80,
+      width: 80,
+      child: Image.asset(
+        imageUrl,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            placeholder,
+            fit: BoxFit.cover,
+          );
+        },
+      ),
+    ),
+  ),
+),
+
+          const SizedBox(height: 6),
           Text(
             name,
             style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.center,
           ),
@@ -73,25 +83,38 @@ class CategoryList extends StatelessWidget {
       {
         'name': 'Produits laitiers',
         'image': 'assets/images/images_(1).jpeg',
-        'placeholder': 'assets/images/images_(1).jpeg'
+        'placeholder': 'assets/images/placeholder.jpeg'
       },
     ];
 
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Catégories',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              Text(
-                'Voir',
-                style: TextStyle(
-                    fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red),
+              TextButton(
+                onPressed: () {
+                  // TODO: Naviguer vers la page complète
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  textStyle: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                child: const Text("Voir plus"),
               ),
             ],
           ),

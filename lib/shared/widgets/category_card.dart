@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class ProductCard extends StatelessWidget {
   final String title;
   final String price;
@@ -14,51 +15,69 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(8.0),
-      child: Stack(
-        children: [
-          // Afficher l'image
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(12), bottom: Radius.circular(12)),
-            child: Image.asset(
-              image,
+      elevation: 6, // Élévation un peu plus marquée pour un effet de profondeur
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Stack(
+          children: [
+            // Image du produit avec un fadeInImage et fallback pour une meilleure expérience utilisateur
+            FadeInImage.assetNetwork(
+              placeholder: 'assets/images/placeholder.jpg',
+              image: image,
               fit: BoxFit.cover,
               width: double.infinity,
-              height: double.infinity, // Laisse cette ligne pour garder la hauteur, si souhaité
-              errorBuilder: (context, error, stackTrace) {
+              height: 200,
+              fadeInDuration: const Duration(milliseconds: 300),
+              fadeOutDuration: const Duration(milliseconds: 300),
+              imageErrorBuilder: (context, error, stackTrace) {
                 return Container(
-                  height: 120,
-                  color: Colors.grey[100],
-                  child: const Center(child: Text('Image non disponible', style: TextStyle(color: Colors.red))),
+                  height: 200,
+                  color: Colors.grey[200],
+                  child: const Center(
+                    child: Text(
+                      'Image non disponible',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
                 );
               },
             ),
-          ),
-          // Texte superposé en haut
-           Positioned(
-            bottom: 10, // Positionne le texte en bas
-            left: 0,    // Commence à gauche
-            right: 0,   // S'étend jusqu'à la droite
-            child: Align(
-              alignment: Alignment.bottomCenter, // Centre horizontalement
-              child: Column(
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-                    textAlign: TextAlign.center, // Centre le texte
-                  ),
-                  const SizedBox(height: 2.0),
-                  Text(
-                    price,
-                    style: const TextStyle(fontSize: 12, color: Colors.red), // Couleur du texte
-                    textAlign: TextAlign.center, // Centre le texte
-                  ),
-                ],
+            // Titre et prix en bas de l'image avec un fond semi-transparent
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                color: Colors.black.withOpacity(0.5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        color: Colors.amber,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -80,13 +99,26 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Product> products = [
-      Product(name: "Canadian 1.5L", price: "950 FC", image: "assets/images/images.jpeg"),
-      Product(name: "Canadian 700ml", price: "900 FC", image: "assets/images/image.webp"),
-      Product(name: "Pommes", price: "600 FC", image: "assets/images/pommes.webp"),
-      Product(name: "Hamburger 1L", price: "800 FC", image: "assets/images/hamburger.jpeg"),
-      // Ajoute d'autres produits ici
-      Product(name: "Fanta 1L", price: "750 FC", image: "assets/images/fanta.jpeg"), // Exemple de produit supplémentaire
-      Product(name: "Sprite 1L", price: "700 FC", image: "assets/images/sprite.jpeg"), // Exemple de produit supplémentaire
+      Product(
+          name: "Canadian 700ml",
+          price: "900 FC",
+          image: "assets/images/image.webp"),
+      Product(
+          name: "Canadian 700ml",
+          price: "900 FC",
+          image: "assets/images/image.webp"),
+      Product(
+          name: "Pommes", price: "600 FC", image: "assets/images/pommes.webp"),
+      Product(
+          name: "Hamburger 1L",
+          price: "800 FC",
+          image: "assets/images/hamburger.jpeg"),
+      Product(
+          name: "Fanta 1L", price: "750 FC", image: "assets/images/fanta.jpeg"),
+      Product(
+          name: "Sprite 1L",
+          price: "700 FC",
+          image: "assets/images/sprite.jpeg"),
     ];
 
     return Column(
@@ -96,25 +128,43 @@ class ProductList extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-              const Text('Voir', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red)),
+              Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                onPressed: () {
+                  // TODO: Naviguer vers une page complète des produits
+                },
+                child: const Text(
+                  'Voir tout',
+                  style: TextStyle(fontSize: 14, color: Colors.red),
+                ),
+              ),
             ],
           ),
         ),
+        // Utilisation de GridView pour mieux organiser les produits en plusieurs colonnes
         SizedBox(
-          height: 200,
-          child: ListView(
+          height: 250,
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // Deux colonnes pour plus de fluidité
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              childAspectRatio: 0.7, // Aspect ratio pour plus de compacité
+            ),
             scrollDirection: Axis.horizontal,
-            children: products.map((product) {
-              return SizedBox(
-                width: 170,
-                child: ProductCard(
-                  title: product.name,
-                  price: product.price,
-                  image: product.image,
-                ),
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return ProductCard(
+                title: product.name,
+                price: product.price,
+                image: product.image,
               );
-            }).toList(),
+            },
           ),
         ),
       ],

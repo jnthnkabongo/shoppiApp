@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppi_flutter/pages/home/accueil.dart';
+import 'package:shoppi_flutter/pages/home/presentation/accueil.dart';
 import 'package:shoppi_flutter/shared/widgets/custom_button.dart';
 
 class MyConnexion extends StatelessWidget {
